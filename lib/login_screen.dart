@@ -14,21 +14,21 @@ class LoginScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
+        title: Image.asset(
+          'assets/logo.png', // Replace with your actual logo path
+          height: 40,
+        ),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
           children: [
-            // Logo
-            Image.asset(
-              'assets/logo.png', // Replace with actual logo path
-              height: 80,
-            ),
             SizedBox(height: 20),
             // Recycle Image
             Image.asset(
-              'assets/recycle.png', // Replace with actual image path
-              height: 100,
+              'assets/loginpage2.jpg',
+              height: 150,
             ),
             SizedBox(height: 20),
             // Email TextField

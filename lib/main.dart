@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'welcome_screen.dart';
-//import 'login_screen.dart';
-//import 'signup_screen.dart'; // Make sure you have these screens created
+import 'login_screen.dart'; // Make sure this is imported
+import 'signup_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,9 +21,9 @@ class MyApp extends StatelessWidget {
       // Set WelcomeScreen as the initial screen
       home: WelcomeScreen(),
       routes: {
-        '/loginScreen': (context) =>
-            const LoginScreen(), // Define route for LoginScreen
-        //     '/signup': (context) => const SignUpScreen(), // Define route for SignUpScreen
+        '/login_screen': (context) => LoginScreen(), // Use '/login_screen' here
+        '/signup_screen': (context) =>
+            SignUpScreen(), // Define route for SignUpScreen
       },
     );
   }
