@@ -3,6 +3,7 @@ import 'welcome_screen.dart';
 import 'login_screen.dart';
 import 'signup_screen.dart';
 import 'resident_home.dart';
+import 'register_bin_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         '/signup_screen': (context) => SignUpScreen(),
         '/resident_home': (context) =>
             ResidentHomePage(), // Resident Home page route
+        '/resident_bin_page': (context) => RegisterBinPage(),
       },
     );
   }

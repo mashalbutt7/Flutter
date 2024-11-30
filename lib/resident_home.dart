@@ -99,10 +99,27 @@ class ResidentHomePage extends StatelessWidget {
                           ],
                         ),
                         child: GestureDetector(
-                          onTap: () {}, // Handle button tap
-                          child: Image.asset(
-                            'assets/bin.jpeg', // Display the image
-                            fit: BoxFit.contain,
+                          onTap: () {
+                            Navigator.pushNamed(context, '/resident_bin_page');
+                          },
+                          child: Container(
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(8.0),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black12,
+                                  blurRadius: 4.0,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Image.asset(
+                              'assets/bin.jpeg',
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         ),
                       ),
