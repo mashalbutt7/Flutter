@@ -62,7 +62,7 @@ class WelcomeScreen extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(
-                      context, '/signup'); // Navigate to SignUpScreen
+                      context, '/signup_screen'); // Navigate to SignUpScreen
                 },
                 child: const Text('Sign Up'),
               ),
