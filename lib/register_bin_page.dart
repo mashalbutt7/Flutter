@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'residentbottompage.dart';
 
 class RegisterBinPage extends StatefulWidget {
   @override
@@ -32,7 +33,7 @@ class _RegisterBinPageState extends State<RegisterBinPage> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.only(top: 40.0, left: 16.0, right: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -44,7 +45,7 @@ class _RegisterBinPageState extends State<RegisterBinPage> {
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: Colors.green.shade100,
+                color: const Color(0xFF2E7835),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: Colors.green),
               ),
@@ -52,7 +53,7 @@ class _RegisterBinPageState extends State<RegisterBinPage> {
                 children: [
                   // White box for the bin image
                   Container(
-                    width: 80,
+                    width: 100,
                     height: 80,
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -60,15 +61,16 @@ class _RegisterBinPageState extends State<RegisterBinPage> {
                     ),
                     child: Center(
                       child:
-                          Image.asset('assets/bin.jpeg', width: 50, height: 50),
+                          Image.asset('assets/bin.png', width: 50, height: 50),
                     ),
                   ),
-                  SizedBox(width: 16),
+                  SizedBox(width: 18),
                   // Separate green box for "10 Currently Registered Bins"
                   Container(
+                    width: 220,
                     padding: const EdgeInsets.all(8.0),
                     decoration: BoxDecoration(
-                      color: Colors.green.shade200,
+                      color: Colors.green.shade100,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Column(
@@ -79,7 +81,7 @@ class _RegisterBinPageState extends State<RegisterBinPage> {
                           style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
-                            color: Colors.green.shade800,
+                            color: const Color(0xFF2E7835),
                           ),
                         ),
                         Text("Currently Registered Bins"),
@@ -103,7 +105,8 @@ class _RegisterBinPageState extends State<RegisterBinPage> {
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 16), // Adds space after the address input field
+            SizedBox(height: 18),
             Text(
               "Select bin size in kgs",
               style: TextStyle(fontWeight: FontWeight.bold),
@@ -205,7 +208,7 @@ class _RegisterBinPageState extends State<RegisterBinPage> {
                 ),
               ],
             ),
-            Spacer(),
+            SizedBox(height: 45), // Move button up by reducing the space
             Center(
               child: ElevatedButton(
                 onPressed: () {
@@ -213,7 +216,7 @@ class _RegisterBinPageState extends State<RegisterBinPage> {
                   print("Selected Bin: $_selectedBinSize");
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
+                  backgroundColor: const Color(0xFF2E7835),
                   padding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
@@ -228,20 +231,7 @@ class _RegisterBinPageState extends State<RegisterBinPage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.green, // Ensure the background is green
-        selectedItemColor:
-            Colors.white, // Icon and text color for selected item
-        unselectedItemColor:
-            Colors.white70, // Icon and text color for unselected items
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.notifications), label: "Notifications"),
-          BottomNavigationBarItem(icon: Icon(Icons.info), label: "About"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-        ],
-      ),
+      bottomNavigationBar: AdminBottomSection(),
     );
   }
 }

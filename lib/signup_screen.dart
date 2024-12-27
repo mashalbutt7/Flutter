@@ -6,13 +6,18 @@ class SignUpScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFEFF4E9),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color(0xFFEFF4E9),
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pop(
+                context); // This will go back to the previous screen (WelcomeScreen)
           },
+        ),
+        title: Text(
+          'SignUp',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
       ),
       body: Padding(
@@ -20,10 +25,7 @@ class SignUpScreen extends StatelessWidget {
         child: ListView(
           children: [
             // Logo
-            Image.asset(
-              'assets/logo.png', // Replace with actual logo path
-              height: 80,
-            ),
+
             SizedBox(height: 20),
             // Name TextField
             TextField(

@@ -7,68 +7,77 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFEFF4E9), // Light green background
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80), // Height of the app bar
-        child: AppBar(
-          backgroundColor: Colors.white, // Customize the app bar color
-          elevation: 0, // Remove shadow
-          flexibleSpace: Center(
-            child: Image.asset(
-              'assets/logo.png', // Path to your logo
-              height: 80, // Set the height to fill the app bar
-              fit:
-                  BoxFit.fitHeight, // Ensure it fills the height of the app bar
+      body: Padding(
+        padding: const EdgeInsets.only(
+            top: 100.0), // Added padding to move content down
+        child: Column(
+          mainAxisAlignment:
+              MainAxisAlignment.start, // Align content at the top
+          children: [
+            // Earth Image with Recycle Arrows right after AppBar
+            Image.asset(
+              'assets/2-removebg-preview.png', // Replace with actual image path
+              height: 430, // Adjusted size of the Earth image
             ),
-          ),
-        ),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start, // Align content at the top
-        children: [
-          // Earth Image with Recycle Arrows right after AppBar
-          Image.asset(
-            'assets/earth.png', // Replace with actual image path
-            height: 430, // Adjusted size of the Earth image
-          ),
-          const SizedBox(height: 20),
-          // App Title
-          const Text(
-            'Smart Waste Management System',
-            style: TextStyle(
-              fontSize: 38,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 20),
-          // Login Button
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(
-                  context, '/login_screen'); // Navigate to LoginScreen
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.green,
-              minimumSize: const Size(150, 40),
-            ),
-            child: const Text('Login'),
-          ),
-          const SizedBox(height: 10),
-          // Sign Up Option
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('New around here?'),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(
-                      context, '/signup_screen'); // Navigate to SignUpScreen
-                },
-                child: const Text('Sign Up'),
+            const SizedBox(height: 20),
+            // App Title with white text
+            const Text(
+              'Smart Waste Management System',
+              style: TextStyle(
+                fontSize: 38,
+                fontWeight: FontWeight.bold,
+                color:
+                    Color.fromARGB(255, 0, 0, 0), // Changed font color to black
               ),
-            ],
-          ),
-        ],
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 20),
+            // Login Button
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                    context, '/login_screen'); // Navigate to LoginScreen
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF2E7835),
+                minimumSize: const Size(150, 40),
+              ),
+              child: const Text(
+                'Login',
+                style: TextStyle(color: Colors.white), // White text in button
+              ),
+            ),
+            const SizedBox(height: 10),
+            // Sign Up Button with "New around here?" text next to it
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'New around here?',
+                  style: TextStyle(
+                      color: Colors.black), // Black text for the question
+                ),
+                const SizedBox(width: 8), // Space between text and button
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context,
+                        '/role_selection_screen'); // Navigate to SignUpScreen
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        const Color(0xFF2E7835), // Same color as Login button
+                    minimumSize: const Size(150, 40),
+                  ),
+                  child: const Text(
+                    'Sign Up',
+                    style:
+                        TextStyle(color: Colors.white), // White text in button
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "902968648485",
+    "project_id": "swms-e99be",
+    "storage_bucket": "swms-e99be.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902968648485:android:2780867176f2b2da4030cc",
+        "android_client_info": {
+          "package_name": "com.example.swms"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiZ9hObg367MDDHrWYa0VmF7Fx7YTzsA0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

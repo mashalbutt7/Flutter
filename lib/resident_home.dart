@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'residentbottompage.dart';
 
 class ResidentHomePage extends StatelessWidget {
   @override
@@ -13,69 +14,115 @@ class ResidentHomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Green section with data analytics button
-            Container(
-              color: Colors.green.shade300,
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 30,
-                        child: Icon(Icons.person),
-                      ),
-                      SizedBox(width: 16),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Javaria Shabbir",
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          Text("Resident"),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Handle the data analytics action
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                      minimumSize: Size(double.infinity, 60),
-                      padding: EdgeInsets.zero,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                            8.0), // Adjust the radius here
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+            // Green section with data analytics button (now clickable)
+            GestureDetector(
+              onTap: () {
+                // Navigate to another page when clicked
+                Navigator.pushNamed(context, '/data_analytics_page');
+              },
+              child: Container(
+                margin: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(12), // Reduced padding
+                decoration: BoxDecoration(
+                  color: const Color(0xFF2E7835), // Green background
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
                       children: [
-                        Text(
-                          "Data Analytics",
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
-                        ),
-                        Image.asset(
-                          'assets/dataanalytics.jpeg',
-                          width: 165,
-                          height: 165,
+                        CircleAvatar(
+                          radius: 30,
+                          child: Icon(Icons.person),
                         ),
                         SizedBox(width: 16),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Javaria Shabbir",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white), // White text
+                            ),
+                            Text(
+                              "Resident",
+                              style:
+                                  TextStyle(color: Colors.white), // White text
+                            ),
+                          ],
+                        ),
                       ],
                     ),
-                  ),
-                ],
+                    SizedBox(height: 16),
+                    // Data Analytics Section
+                    Container(
+                      padding: const EdgeInsets.all(12), // Reduced padding
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 4.0,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        children: [
+                          // Text Section
+                          Expanded(
+                            flex: 5,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // Center "Data" and "Analytics" text
+                                Center(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        "Data",
+                                        style: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Analytics",
+                                        style: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          // Image Section (slightly reduced width)
+                          Container(
+                            height: 90,
+                            width: 180, // Reduced width of image
+                            child: Image.asset(
+                              'assets/dataanalytics.png',
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(height: 16),
-            // Vertical buttons for actions
+            // Vertical buttons for actions (unchanged)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
@@ -83,18 +130,16 @@ class ResidentHomePage extends StatelessWidget {
                   Column(
                     children: [
                       Container(
-                        width: 100, // Fixed width for square size
-                        height: 100, // Fixed height to make it a square
+                        width: 100,
+                        height: 100,
                         decoration: BoxDecoration(
-                          color: Colors.white, // White background
-                          borderRadius: BorderRadius.circular(
-                              8.0), // Optional rounded corners
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8.0),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black12,
                               blurRadius: 4.0,
-                              offset: Offset(
-                                  0, 2), // Subtle shadow for a clean look
+                              offset: Offset(0, 2),
                             ),
                           ],
                         ),
@@ -102,33 +147,19 @@ class ResidentHomePage extends StatelessWidget {
                           onTap: () {
                             Navigator.pushNamed(context, '/resident_bin_page');
                           },
-                          child: Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(8.0),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black12,
-                                  blurRadius: 4.0,
-                                  offset: Offset(0, 2),
-                                ),
-                              ],
-                            ),
-                            child: Image.asset(
-                              'assets/bin.jpeg',
-                              fit: BoxFit.contain,
-                            ),
+                          child: Image.asset(
+                            'assets/bin.png',
+                            fit: BoxFit.contain,
                           ),
                         ),
                       ),
-                      SizedBox(
-                          height: 8), // Space between the box and the label
+                      SizedBox(height: 8),
                       Text(
-                        "Register Bin", // Label for the button
+                        "Register Bin",
                         style: TextStyle(
-                            fontSize: 14.0, fontWeight: FontWeight.w500),
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ],
                   ),
@@ -150,7 +181,9 @@ class ResidentHomePage extends StatelessWidget {
                           ],
                         ),
                         child: GestureDetector(
-                          onTap: () {}, // Handle button tap
+                          onTap: () {
+                            Navigator.pushNamed(context, '/feedback_page');
+                          },
                           child: Image.asset(
                             'assets/feedback.png',
                             fit: BoxFit.contain,
@@ -161,7 +194,9 @@ class ResidentHomePage extends StatelessWidget {
                       Text(
                         "Provide Feedback",
                         style: TextStyle(
-                            fontSize: 14.0, fontWeight: FontWeight.w500),
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ],
                   ),
@@ -183,7 +218,9 @@ class ResidentHomePage extends StatelessWidget {
                           ],
                         ),
                         child: GestureDetector(
-                          onTap: () {}, // Handle button tap
+                          onTap: () {
+                            Navigator.pushNamed(context, '/feedback_responses');
+                          },
                           child: Image.asset(
                             'assets/feedbackreply.jpg',
                             fit: BoxFit.contain,
@@ -194,7 +231,9 @@ class ResidentHomePage extends StatelessWidget {
                       Text(
                         "View Feedback Response",
                         style: TextStyle(
-                            fontSize: 14.0, fontWeight: FontWeight.w500),
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ],
                   ),
@@ -204,50 +243,7 @@ class ResidentHomePage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.notifications), label: "Notifications"),
-          BottomNavigationBarItem(icon: Icon(Icons.info), label: "About"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-        ],
-      ),
-    );
-  }
-}
-
-class ActionCard extends StatelessWidget {
-  final String imagePath;
-  final String label;
-  final VoidCallback onTap;
-
-  ActionCard(
-      {required this.imagePath, required this.label, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Card(
-        elevation: 2,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              imagePath,
-              width: 60, // Increased image size
-              height: 60, // Increased image size
-            ),
-            SizedBox(height: 8),
-            Text(
-              label,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 14), // Reduced text size to fit
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: AdminBottomSection(),
     );
   }
 }

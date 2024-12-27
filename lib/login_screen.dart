@@ -6,28 +6,31 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFEFF4E9),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color(0xFFEFF4E9),
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pop(
+                context); // This will go back to the previous screen (WelcomeScreen)
           },
         ),
-        title: Image.asset(
-          'assets/logo.png', // Replace with your actual logo path
-          height: 40,
+        title: Text(
+          'Login',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
-        centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.only(
+            top: 80.0,
+            left: 20.0,
+            right: 20.0), // Added padding to move everything down
         child: Column(
           children: [
             SizedBox(height: 20),
             // Recycle Image
             Image.asset(
-              'assets/loginpage2.jpg',
+              'assets/recycling_symbol_182651-removebg-preview.png',
               height: 150,
             ),
             SizedBox(height: 20),
@@ -59,22 +62,47 @@ class LoginScreen extends StatelessWidget {
                 },
                 child: Text(
                   'Forgot your password?',
-                  style: TextStyle(color: Colors.yellow[800]),
+                  style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
                 ),
               ),
             ),
             SizedBox(height: 20),
-            // Login Button
+            // Login Button (White with black text)
             ElevatedButton(
               onPressed: () {
                 // After successful login, navigate to ResidentHomePage
                 Navigator.pushReplacementNamed(context, '/resident_home');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green, // Updated from `primary`
-                minimumSize: Size(double.infinity, 50),
+                backgroundColor: const Color(0xFF2E7835), // White background
+                minimumSize:
+                    Size(double.infinity, 50), // Green border for the button
               ),
-              child: Text('Login'),
+              child: Text(
+                'Login',
+                style: TextStyle(color: Colors.white), // Black text color
+              ),
+            ),
+            SizedBox(height: 20),
+            // New around here? Text and Register Button
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'New around here?',
+                  style: TextStyle(color: Colors.black),
+                ),
+                TextButton(
+                  onPressed: () {
+                    // Navigate to SignUp page
+                    Navigator.pushNamed(context, '/sign_up_screen');
+                  },
+                  child: Text(
+                    'Register',
+                    style: TextStyle(color: const Color(0xFF2E7835)),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
