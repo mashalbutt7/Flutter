@@ -22,7 +22,7 @@ class _FeedbackResponseScreenState extends State<FeedbackResponseScreen> {
 
     // Set the time to midnight to compare just the date part
     final date = DateTime(selectedDate!.year, selectedDate!.month,
-        selectedDate!.day, 0, 0, 0); // Setting time to 00:00:00
+        selectedDate!.day, 0, 0, 0); // Midnight time
     return Timestamp.fromDate(date);
   }
 
@@ -78,12 +78,21 @@ class _FeedbackResponseScreenState extends State<FeedbackResponseScreen> {
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
                 // If a date is selected, filter the data based on that date
-                stream: feedbackResponses
-                    .where(
-                      'date', // Assuming 'date' is the field in Firestore
-                      isEqualTo: getTimestampForSelectedDate(),
-                    )
-                    .snapshots(),
+                stream: selectedDate != null
+                    ? feedbackResponses
+                        .where(
+                          'date', // Assuming 'date' is the field in Firestore
+                          isGreaterThanOrEqualTo: getTimestampForSelectedDate(),
+                        )
+                        .where(
+                          'date',
+                          isLessThan: getTimestampForSelectedDate()!
+                              .toDate()
+                              .add(const Duration(
+                                  days: 1)), // Get until the end of the day
+                        )
+                        .snapshots()
+                    : feedbackResponses.snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
@@ -97,24 +106,26 @@ class _FeedbackResponseScreenState extends State<FeedbackResponseScreen> {
                   final feedbackData = snapshot.data!.docs;
 
                   return SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: DataTable(
-                      columns: const [
-                        DataColumn(label: Text('Feedback ID')),
-                        DataColumn(label: Text('Response')),
-                        DataColumn(label: Text('Contact Person')),
-                        DataColumn(label: Text('Date')),
-                      ],
-                      rows: feedbackData.map((doc) {
-                        final data = doc.data() as Map<String, dynamic>;
-                        return DataRow(cells: [
-                          DataCell(Text(data['feedbackID'].toString())),
-                          DataCell(Text(data['response'])),
-                          DataCell(Text(data['contactPerson'])),
-                          DataCell(Text(data['date']?.toDate().toString() ??
-                              'No date available')),
-                        ]);
-                      }).toList(),
+                    scrollDirection: Axis.vertical, // Allow vertical scrolling
+                    child: SingleChildScrollView(
+                      scrollDirection:
+                          Axis.horizontal, // Allow horizontal scrolling
+                      child: DataTable(
+                        columnSpacing: 16, // Adjust column spacing
+                        columns: const [
+                          DataColumn(label: Text('Feedback ID')),
+                          DataColumn(label: Text('Response')),
+                          DataColumn(label: Text('Contact Person')),
+                        ],
+                        rows: feedbackData.map((doc) {
+                          final data = doc.data() as Map<String, dynamic>;
+                          return DataRow(cells: [
+                            DataCell(Text(data['feedbackID'].toString())),
+                            DataCell(Text(data['response'])),
+                            DataCell(Text(data['contactPerson'])),
+                          ]);
+                        }).toList(),
+                      ),
                     ),
                   );
                 },

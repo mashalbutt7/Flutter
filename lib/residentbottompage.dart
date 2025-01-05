@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'about.dart'; // Import the About page here
 
 class AdminBottomSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: const BottomAppBar(
+      child: BottomAppBar(
         color: Color(0xFF2E7835),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            //home icon
+            // Home icon
             Column(
               children: [
                 IconButton(
-                  onPressed: null,
+                  onPressed: () {
+                    // Add navigation for Home here
+                  },
                   icon: Icon(
                     Icons.home,
                     color: Colors.white,
@@ -29,11 +32,13 @@ class AdminBottomSection extends StatelessWidget {
                 ),
               ],
             ),
-            //Notifications icon
+            // Notifications icon
             Column(
               children: [
                 IconButton(
-                  onPressed: null,
+                  onPressed: () {
+                    // Add navigation for Notifications here
+                  },
                   icon: Icon(
                     Icons.notifications,
                     color: Colors.white,
@@ -49,11 +54,16 @@ class AdminBottomSection extends StatelessWidget {
                 ),
               ],
             ),
-            //About icon
+            // About icon
             Column(
               children: [
                 IconButton(
-                  onPressed: null,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AboutPage()),
+                    );
+                  },
                   icon: Icon(
                     Icons.description_outlined,
                     color: Colors.white,
@@ -69,11 +79,13 @@ class AdminBottomSection extends StatelessWidget {
                 ),
               ],
             ),
-            //Profile icon
+            // Profile icon
             Column(
               children: [
                 IconButton(
-                  onPressed: null,
+                  onPressed: () {
+                    // Add navigation for Profile here
+                  },
                   icon: Icon(
                     Icons.person,
                     color: Colors.white,

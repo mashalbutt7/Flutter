@@ -24,9 +24,13 @@ class SignUpScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: ListView(
           children: [
-            // Logo
+            // Spacer to push content down
+            SizedBox(
+                height:
+                    60), // Adjust this height as needed to move content down
 
-            SizedBox(height: 20),
+            // Logo (or other widgets can go here)
+
             // Name TextField
             TextField(
               decoration: InputDecoration(
@@ -35,7 +39,8 @@ class SignUpScreen extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 30),
+
             // Email TextField
             TextField(
               decoration: InputDecoration(
@@ -44,7 +49,8 @@ class SignUpScreen extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 30),
+
             // Contact Number TextField
             TextField(
               decoration: InputDecoration(
@@ -53,13 +59,14 @@ class SignUpScreen extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 30),
+
             // Profile Picture Upload
             Text(
               'Add a Profile Picture',
               style: TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             GestureDetector(
               onTap: () {
                 // Handle profile picture upload
@@ -81,7 +88,8 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 30),
+
             // Password TextField
             TextField(
               decoration: InputDecoration(
@@ -91,7 +99,8 @@ class SignUpScreen extends StatelessWidget {
               ),
               obscureText: true,
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 30),
+
             // Confirm Password TextField
             TextField(
               decoration: InputDecoration(
@@ -101,17 +110,19 @@ class SignUpScreen extends StatelessWidget {
               ),
               obscureText: true,
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 40),
+
             // Create Account Button
             ElevatedButton(
               onPressed: () {
                 // Handle sign up
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green, // Corrected parameter
+                backgroundColor: const Color(0xFF2E7835), // Corrected parameter
                 minimumSize: Size(double.infinity, 50),
               ),
-              child: Text('Create Account'),
+              child:
+                  Text('Create Account', style: TextStyle(color: Colors.white)),
             ),
           ],
         ),
