@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/intl.dart'; // For date formatting
+import 'package:intl/intl.dart';
 
-// Assuming AdminBottomSection is defined elsewhere and imported here.
-import 'residentbottompage.dart'; // Replace with the actual path
+import 'residentbottompage.dart'; // Replace with the actual path for the bottom navigation.
 
 class FeedbackResponseScreen extends StatefulWidget {
   @override
@@ -14,15 +13,13 @@ class _FeedbackResponseScreenState extends State<FeedbackResponseScreen> {
   final CollectionReference feedbackResponses =
       FirebaseFirestore.instance.collection('feedbackResponses');
 
-  DateTime? selectedDate; // To store selected date
+  DateTime? selectedDate;
 
-  // Function to format the date for Firebase filtering
   Timestamp? getTimestampForSelectedDate() {
     if (selectedDate == null) return null;
 
-    // Set the time to midnight to compare just the date part
-    final date = DateTime(selectedDate!.year, selectedDate!.month,
-        selectedDate!.day, 0, 0, 0); // Midnight time
+    final date = DateTime(
+        selectedDate!.year, selectedDate!.month, selectedDate!.day, 0, 0, 0);
     return Timestamp.fromDate(date);
   }
 
@@ -30,7 +27,7 @@ class _FeedbackResponseScreenState extends State<FeedbackResponseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Feedback Response'),
+        title: const Text('Feedback Responses'),
         backgroundColor: const Color(0xFFEFF4E9),
       ),
       body: Padding(
@@ -39,7 +36,7 @@ class _FeedbackResponseScreenState extends State<FeedbackResponseScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'View the responses to your submitted feedback below',
+              'View the responses to your submitted feedback below.',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
@@ -50,7 +47,6 @@ class _FeedbackResponseScreenState extends State<FeedbackResponseScreen> {
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(width: 8),
-                // Date Picker for selecting date
                 ElevatedButton(
                   onPressed: () async {
                     final DateTime? pickedDate = await showDatePicker(
@@ -77,19 +73,17 @@ class _FeedbackResponseScreenState extends State<FeedbackResponseScreen> {
             const SizedBox(height: 16),
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
-                // If a date is selected, filter the data based on that date
                 stream: selectedDate != null
                     ? feedbackResponses
                         .where(
-                          'date', // Assuming 'date' is the field in Firestore
+                          'date',
                           isGreaterThanOrEqualTo: getTimestampForSelectedDate(),
                         )
                         .where(
                           'date',
                           isLessThan: getTimestampForSelectedDate()!
                               .toDate()
-                              .add(const Duration(
-                                  days: 1)), // Get until the end of the day
+                              .add(const Duration(days: 1)),
                         )
                         .snapshots()
                     : feedbackResponses.snapshots(),
@@ -105,28 +99,45 @@ class _FeedbackResponseScreenState extends State<FeedbackResponseScreen> {
 
                   final feedbackData = snapshot.data!.docs;
 
-                  return SingleChildScrollView(
-                    scrollDirection: Axis.vertical, // Allow vertical scrolling
-                    child: SingleChildScrollView(
-                      scrollDirection:
-                          Axis.horizontal, // Allow horizontal scrolling
-                      child: DataTable(
-                        columnSpacing: 16, // Adjust column spacing
-                        columns: const [
-                          DataColumn(label: Text('Feedback ID')),
-                          DataColumn(label: Text('Response')),
-                          DataColumn(label: Text('Contact Person')),
-                        ],
-                        rows: feedbackData.map((doc) {
-                          final data = doc.data() as Map<String, dynamic>;
-                          return DataRow(cells: [
-                            DataCell(Text(data['feedbackID'].toString())),
-                            DataCell(Text(data['response'])),
-                            DataCell(Text(data['contactPerson'])),
-                          ]);
-                        }).toList(),
-                      ),
-                    ),
+                  return ListView.builder(
+                    itemCount: feedbackData.length,
+                    itemBuilder: (context, index) {
+                      final data =
+                          feedbackData[index].data() as Map<String, dynamic>;
+                      return Card(
+                        margin: const EdgeInsets.symmetric(vertical: 8),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Feedback ID: ${data['feedbackID']}',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'Response: ${data['response']}',
+                                style: const TextStyle(fontSize: 14),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'Contact Person: ${data['contactPerson']}',
+                                style: const TextStyle(fontSize: 14),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'Date: ${DateFormat('dd-MM-yyyy').format((data['date'] as Timestamp).toDate())}',
+                                style: const TextStyle(fontSize: 12),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
                   );
                 },
               ),
@@ -134,7 +145,7 @@ class _FeedbackResponseScreenState extends State<FeedbackResponseScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: residentBottomSection(), // Integrated Bottom Section
+      bottomNavigationBar: residentBottomSection(),
     );
   }
 }
