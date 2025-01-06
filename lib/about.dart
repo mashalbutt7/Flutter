@@ -78,7 +78,7 @@ class AboutPage extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: AdminBottomSection(),
+      bottomNavigationBar: residentBottomSection(),
     );
   }
 }

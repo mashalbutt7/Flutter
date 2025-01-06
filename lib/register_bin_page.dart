@@ -231,7 +231,7 @@ class _RegisterBinPageState extends State<RegisterBinPage> {
           ],
         ),
       ),
-      bottomNavigationBar: AdminBottomSection(),
+      bottomNavigationBar: residentBottomSection(),
     );
   }
 }

@@ -186,7 +186,7 @@ class _ProvideFeedbackPageState extends State<ProvideFeedbackPage> {
           );
         },
       ),
-      bottomNavigationBar: AdminBottomSection(),
+      bottomNavigationBar: residentBottomSection(),
     );
   }
 }

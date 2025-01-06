@@ -1,114 +1,64 @@
 import 'package:flutter/material.dart';
-import 'about.dart'; // Import the About page here
-import 'notifications.dart'; // Import the Notifications page here
+import 'about.dart';
+import 'notifications.dart';
+import 'resident_home.dart';
+import 'residentProfilePage.dart';
 
-class AdminBottomSection extends StatelessWidget {
+class residentBottomSection extends StatefulWidget {
+  @override
+  State<residentBottomSection> createState() => _residentBottomSectionState();
+}
+
+class _residentBottomSectionState extends State<residentBottomSection> {
+  int selectedIndex = 0;
+
+  void tappedFunction(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+    switch (index) {
+      case 0:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ResidentHomePage()));
+      case 1:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => NotificationsPage()));
+      case 2:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => AboutPage()));
+      case 3:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ResidentProfilePage()));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: BottomAppBar(
-        color: Color(0xFF2E7835),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            // Home icon
-            Column(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    // Add navigation for Home here
-                  },
-                  icon: Icon(
-                    Icons.home,
-                    color: Colors.white,
-                    size: 30,
-                  ),
-                ),
-                Text(
-                  'Home',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 5,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            // Notifications icon
-            Column(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => NotificationsPage()),
-                    );
-                  },
-                  icon: Icon(
-                    Icons.notifications,
-                    color: Colors.white,
-                    size: 30,
-                  ),
-                ),
-                Text(
-                  'Notifications',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 5,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            // About icon
-            Column(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AboutPage()),
-                    );
-                  },
-                  icon: Icon(
-                    Icons.description_outlined,
-                    color: Colors.white,
-                    size: 30,
-                  ),
-                ),
-                Text(
-                  'About',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 5,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            // Profile icon
-            Column(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    // Add navigation for Profile here
-                  },
-                  icon: Icon(
-                    Icons.person,
-                    color: Colors.white,
-                    size: 30,
-                  ),
-                ),
-                Text(
-                  'Profile',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 5,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ],
+    return BottomNavigationBar(
+      currentIndex: selectedIndex,
+      onTap: tappedFunction,
+      type: BottomNavigationBarType.fixed,
+      items: [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home, color: Colors.white),
+          label: "Home",
         ),
-      ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.notifications, color: Colors.white),
+          label: "Notifications",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.info, color: Colors.white),
+          label: "About",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person, color: Colors.white),
+          label: "Profile",
+        ),
+      ],
+      backgroundColor: const Color(0xFF2E7835),
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.white,
     );
   }
 }

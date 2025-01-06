@@ -134,7 +134,7 @@ class _FeedbackResponseScreenState extends State<FeedbackResponseScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: AdminBottomSection(), // Integrated Bottom Section
+      bottomNavigationBar: residentBottomSection(), // Integrated Bottom Section
     );
   }
 }

@@ -103,7 +103,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
           ),
         ),
       ),
-      bottomNavigationBar: AdminBottomSection(),
+      bottomNavigationBar: residentBottomSection(),
     );
   }
 }

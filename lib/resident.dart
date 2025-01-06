@@ -39,7 +39,7 @@ class Admin extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: AdminBottomSection(),
+      bottomNavigationBar: residentBottomSection(),
     );
   }
 }

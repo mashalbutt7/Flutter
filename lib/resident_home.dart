@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'resident_menu.dart';
 import 'residentbottompage.dart';
 
 class ResidentHomePage extends StatelessWidget {
@@ -7,10 +8,8 @@ class ResidentHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Resident Home"),
-        actions: [
-          IconButton(icon: Icon(Icons.menu), onPressed: () {}),
-        ],
       ),
+      endDrawer: ResidentMenu(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -243,7 +242,7 @@ class ResidentHomePage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: AdminBottomSection(),
+      bottomNavigationBar: residentBottomSection(),
     );
   }
 }
