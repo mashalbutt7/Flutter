@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'about.dart'; // Import the About page here
+import 'notifications.dart'; // Import the Notifications page here
 
 class AdminBottomSection extends StatelessWidget {
   @override
@@ -37,7 +38,11 @@ class AdminBottomSection extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () {
-                    // Add navigation for Notifications here
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => NotificationsPage()),
+                    );
                   },
                   icon: Icon(
                     Icons.notifications,
